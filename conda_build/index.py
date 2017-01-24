@@ -91,7 +91,8 @@ def update_index(dir_path, config, force=False, check_md5=False, remove=True, lo
             except (IOError, ValueError):
                 index = {}
 
-        files = set(fn for fn in os.listdir(dir_path) if fn.endswith('.tar.bz2'))
+        files = set(fn for fn in os.listdir(dir_path)
+                    if fn.endswith('.tar.bz2') or fn.endswith('.tar.xz'))
         if could_be_mirror and any(fn.startswith('_license-') for fn in files):
             sys.exit("""\
     Error:
